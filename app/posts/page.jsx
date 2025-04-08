@@ -13,7 +13,7 @@ const getPostsService = async () => {
     return posts;
 }
 
-const PostPage = async () => {
+const PostsPage = async () => {
     const posts = await getPostsService();
     return (
         <>
@@ -31,4 +31,4 @@ const PostPage = async () => {
     );
 };
 
-export default PostPage;
+export default PostsPage;
