@@ -1,12 +1,14 @@
 import { Container, ListGroup, Row } from "react-bootstrap";
 import ListGroupItemLink from "@/components/ListGroupItemLink";
 import BackButton from "@/components/BackButton";
+import { revalidatePath } from "next/cache";
+import UpdateData from "@/components/UpdateData";
 
 const getUsersService = async () => {
     const res = await fetch('http://localhost:4000/users?_sort=id&_order=desc');
     const users = await res.json();
     return users;
-}
+};
 
 const UsersPage = async () => {
     const users = await getUsersService();
@@ -25,16 +27,17 @@ const UsersPage = async () => {
                 email
             })
         });
-        if (res.status === 200) {
-
-        };
+        console.log(res.status);
+        // if (res.status === 200) {
+        revalidatePath('/users');
+        // };
     };
 
     return (
         <>
             <Container className="d-flex justify-content-center align-items-center flex-column">
                 <BackButton />
-
+                <UpdateData path={'/users'} />
                 <form className="text-right w-50" action={createUserAction}>
                     <h3>Create User</h3>
                     <input className="form-control mt-2" type="text" name="name" placeholder="Name" />
@@ -45,7 +48,7 @@ const UsersPage = async () => {
                 <Row className='mt-5 w-100'>
                     <ListGroup>
                         {users.map((user) => (
-                            <ListGroupItemLink key={user.id} href={`/posts/${user.id}`} title={user.name} />
+                            <ListGroupItemLink key={user.id} href={`/users/${user.id}`} title={user.name} />
                         ))}
                     </ListGroup>
                 </Row>

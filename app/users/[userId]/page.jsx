@@ -1,6 +1,7 @@
 import { Container, ListGroup, Row, Button } from "react-bootstrap";
 import ListGroupItemLink from "@/components/ListGroupItemLink";
 import BackButton from "@/components/BackButton";
+import UpdateData from "@/components/UpdateData";
 
 
 export async function generateStaticParams() {
@@ -23,12 +24,13 @@ const UserPage = async ({ params }) => {
         <>
             <Container className="d-flex justify-content-center align-items-center flex-column">
                 <BackButton />
+                <UpdateData path={`/users/${params.userId}`} />
                 <Row className='mt-5 w-100'>
                     <ListGroup>
                         <ListGroupItemLink title={user.id} />
                         <ListGroupItemLink title={user.name} />
                         <ListGroupItemLink title={user.email} />
-                        <ListGroupItemLink title={user.address.city} />
+                        {/* <ListGroupItemLink title={user.address.city} /> */}
                     </ListGroup>
                 </Row>
             </Container>
