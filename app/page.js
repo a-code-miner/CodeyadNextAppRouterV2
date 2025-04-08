@@ -11,6 +11,7 @@ export default function Home() {
 					<ListGroupItemLink href={'/admin'} title={'admin'} />
 					<ListGroupItemLink href={'/admin/panel'} title={'admin panel'} />
 					<ListGroupItemLink href={'/filteredPosts'} title={'filtered posts'} />
+					<ListGroupItemLink href={'/usersNoStore'} title={'Users no store'} />
 				</ListGroup>
 			</Row>
 		</Container>
